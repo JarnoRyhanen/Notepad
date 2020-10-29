@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:textSize="30dp"
+            />
+
+        <Button
+            android:id="@+id/secondary_activity_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/secondary_activity_title"
+        android:background="@drawable/border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="20dp"
+        tools:text="Title"
+
+        />
+
+    <EditText
+        android:id="@+id/secondary_activity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border"
+        android:padding="24dp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum lobortis ex sed vestibulum. Integer eu nibh scelerisque, feugiat eros a, sagittis metus. Donec ultrices erat non faucibus lobortis. Cras in maximus lacus. Morbi finibus augue sit amet diam ultricies malesuada. Nunc orci dui, maximus quis neque et, tempus eleifend mauris. Donec ac ligula ut quam tincidunt iaculis. Pellentesque quis leo eu mauris varius ultricies sit amet ut diam. Ut et volutpat mi, id hendrerit sem. Sed semper turpis magna, in laoreet ante posuere eu. Donec suscipit congue felis sit amet posuere. Maecenas sed enim a justo scelerisque mollis. Aliquam erat volutpat. Quisque facilisis convallis leo, et scelerisque justo rutrum a."
+
+
+        />
+
+</LinearLayout>
