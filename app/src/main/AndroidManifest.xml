@@ -13,14 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notepad"
         >
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="locked"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondaryActivity" />
+        <activity
+            android:name=".SecondaryActivity"
+            android:screenOrientation="locked"
+            />
     </application>
 
 </manifest>

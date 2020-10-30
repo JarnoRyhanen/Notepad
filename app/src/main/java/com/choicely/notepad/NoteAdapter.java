@@ -2,6 +2,7 @@ package com.choicely.notepad;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         NoteData note = list.get(position);
 
         holder.noteID = note.getId();
+
         holder.title.setText(note.getTitle());
+        holder.title.setTextColor(Color.BLACK);
+        holder.title.setBackgroundColor(note.getColor());
+
         holder.text.setText(note.getNoteText());
+        holder.text.setTextColor(Color.BLACK);
+        holder.text.setBackgroundColor(note.getColor());
+        holder.text.getBackground().setAlpha(128);
+
+
+
+
     }
 
     public void add(NoteData note) {
@@ -57,13 +69,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         TextView title;
         TextView text;
 
-
         public NoteViewHolder(@NonNull View view) {
             super(view);
             view.setOnClickListener(onRowClick);
 
             title = view.findViewById(R.id.note_list_row_title);
             text = view.findViewById(R.id.note_list_row_text);
+
+
         }
 
         private View.OnClickListener onRowClick = v -> {

@@ -7,6 +7,7 @@ public class NoteData extends RealmObject {
 
     @PrimaryKey
     private long id;
+    private int color;
     private String title;
     private String noteText;
 
@@ -16,6 +17,14 @@ public class NoteData extends RealmObject {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public String getTitle() {
