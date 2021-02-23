@@ -2,18 +2,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/secondary_activity_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         >
 
         <TextView
@@ -21,13 +20,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:textSize="30dp"
-            />
-
-        <Button
-            android:id="@+id/secondary_activity_save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SAVE"
             />
 
     </LinearLayout>
@@ -38,20 +30,21 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:drawableBottom="@color/black"
+        android:hint="Title"
+        android:maxLines="2"
         android:padding="16dp"
         android:textSize="20dp"
         tools:text="Title"
-        android:maxLines="2"
-
         />
 
     <EditText
-        android:gravity="top|left"
         android:id="@+id/secondary_activity_text"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:background="@drawable/border"
+        android:gravity="top|left"
         android:padding="24dp"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum lobortis ex sed vestibulum. Integer eu nibh scelerisque, feugiat eros a, sagittis metus. Donec ultrices erat non faucibus lobortis. Cras in maximus lacus. Morbi finibus augue sit amet diam ultricies malesuada. Nunc orci dui, maximus quis neque et, tempus eleifend mauris. Donec ac ligula ut quam tincidunt iaculis. Pellentesque quis leo eu mauris varius ultricies sit amet ut diam. Ut et volutpat mi, id hendrerit sem. Sed semper turpis magna, in laoreet ante posuere eu. Donec suscipit congue felis sit amet posuere. Maecenas sed enim a justo scelerisque mollis. Aliquam erat volutpat. Quisque facilisis convallis leo, et scelerisque justo rutrum a."
         />
@@ -66,38 +59,47 @@
 
         <Button
             android:id="@+id/secondary_activity_red_button"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/red"
-
+            android:onClick="onClick"
             />
 
         <Button
             android:id="@+id/secondary_activity_yellow_button"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/yellow"
+            android:onClick="onClick"
             />
 
         <Button
             android:id="@+id/secondary_activity_green_button"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/green"
+            android:onClick="onClick"
             />
 
         <Button
             android:id="@+id/secondary_activity_blue_button"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/blue"
+            android:onClick="onClick"
             />
 
         <Button
             android:id="@+id/secondary_activity_white_button"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/white"
+            android:onClick="onClick"
             />
     </LinearLayout>
 

@@ -27,6 +27,7 @@
         <activity
             android:name=".SecondaryActivity"
             android:screenOrientation="locked"
+            android:windowSoftInputMode="adjustResize"
             />
     </application>
 

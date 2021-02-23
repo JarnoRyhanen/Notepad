@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-
     private TextView newNote;
     private RecyclerView recyclerView;
     private NoteAdapter adapter;

@@ -24,7 +24,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,10 +44,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         holder.text.setTextColor(Color.BLACK);
         holder.text.setBackgroundColor(note.getColor());
         holder.text.getBackground().setAlpha(128);
-
-
-
-
     }
 
     public void add(NoteData note) {
@@ -72,11 +67,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         public NoteViewHolder(@NonNull View view) {
             super(view);
             view.setOnClickListener(onRowClick);
-
             title = view.findViewById(R.id.note_list_row_title);
             text = view.findViewById(R.id.note_list_row_text);
-
-
         }
 
         private View.OnClickListener onRowClick = v -> {
@@ -85,8 +77,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             intent.putExtra(IntentKeys.NOTE_ID, noteID);
             ctx.startActivity(intent);
         };
-
     }
-
 }
 

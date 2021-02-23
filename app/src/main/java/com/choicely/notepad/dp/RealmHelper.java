@@ -38,7 +38,6 @@ public class RealmHelper {
         instance = new RealmHelper();
 
         Realm.init(context);
-
         RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name(REALM_NAME)
                 .schemaVersion(REALM_VERSION)

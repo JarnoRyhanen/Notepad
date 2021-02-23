@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,75 +19,85 @@ import io.realm.Sort;
 public class SecondaryActivity extends AppCompatActivity {
 
     private final static String TAG = "SecondaryActivity";
-
-    private Button saveButton;
-    private Button red;
-    private Button yellow;
-    private Button green;
-    private Button blue;
-    private Button white;
-    private EditText title;
-    private EditText text;
+    private LinearLayout linearLayout;
+    private Button redButton;
+    private Button yellowButton;
+    private Button greenButton;
+    private Button blueButton;
+    private Button whiteButton;
+    private EditText editTextTitle;
+    private EditText editTextContent;
     private int noteID;
     private int color;
+
+    private int redColor;
+    private int greenColor;
+    private int blueColor;
+    private int yellowColor;
+    private int whiteColor;
+
 
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondary_activity);
-
-        saveButton = findViewById(R.id.secondary_activity_save_button);
-        red = findViewById(R.id.secondary_activity_red_button);
-        yellow = findViewById(R.id.secondary_activity_yellow_button);
-        green = findViewById(R.id.secondary_activity_green_button);
-        blue = findViewById(R.id.secondary_activity_blue_button);
-        white = findViewById(R.id.secondary_activity_white_button);
-        title = findViewById(R.id.secondary_activity_title);
-        text = findViewById(R.id.secondary_activity_text);
+        linearLayout = findViewById(R.id.secondary_activity_linear_layout);
+        redButton = findViewById(R.id.secondary_activity_red_button);
+        yellowButton = findViewById(R.id.secondary_activity_yellow_button);
+        greenButton = findViewById(R.id.secondary_activity_green_button);
+        blueButton = findViewById(R.id.secondary_activity_blue_button);
+        whiteButton = findViewById(R.id.secondary_activity_white_button);
+        editTextTitle = findViewById(R.id.secondary_activity_title);
+        editTextContent = findViewById(R.id.secondary_activity_text);
 
         noteID = (int) getIntent().getLongExtra(IntentKeys.NOTE_ID, -1);
+        getColors();
 
         if (noteID == -1) {
             newNote();
         } else {
             loadNote();
         }
+    }
 
-        saveButton.setOnClickListener(v -> {
-            saveNote();
-        });
+    private void getColors() {
+        redColor = getResources().getColor(R.color.red);
+        greenColor = getResources().getColor(R.color.green);
+        blueColor = getResources().getColor(R.color.blue);
+        yellowColor = getResources().getColor(R.color.yellow);
+        whiteColor = getResources().getColor(R.color.white);
+    }
 
-        red.setOnClickListener(v -> {
-            getWindow().getDecorView().setBackgroundColor(Color.RED);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
-            color = Color.RED;
-        });
-        yellow.setOnClickListener(v -> {
-            getWindow().getDecorView().setBackgroundColor(Color.YELLOW);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
-            color = Color.YELLOW;
-        });
-        green.setOnClickListener(v -> {
-            getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
-            color = Color.GREEN;
-        });
-        blue.setOnClickListener(v -> {
-            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
-            color = Color.BLUE;
-        });
-        white.setOnClickListener(v -> {
-            getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
-            color = Color.WHITE;
-        });
+    public void onClick(View view) {
+        if (view == redButton) {
+            updateScreen(redColor);
+        } else if (view == greenButton) {
+            updateScreen(greenColor);
+        } else if (view == blueButton) {
+            updateScreen(blueColor);
+        } else if (view == yellowButton) {
+            updateScreen(yellowColor);
+        } else if (view == whiteButton) {
+            updateScreen(whiteColor);
+        }
+    }
+
+    private void updateScreen(int color) {
+        linearLayout.setBackgroundColor(color);
+        updateBackgroundAlpha();
+        this.color = color;
+    }
+
+    private void updateBackgroundAlpha() {
+        editTextContent.getBackground().setAlpha(150);
+        editTextTitle.getBackground().setAlpha(150);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        saveNote();
     }
 
     private void newNote() {
@@ -95,8 +106,8 @@ public class SecondaryActivity extends AppCompatActivity {
         if (lastNote != null) {
             noteID = (int) (lastNote.getId() + 1);
             getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-            text.getBackground().setAlpha(150);
-            title.getBackground().setAlpha(150);
+            editTextContent.getBackground().setAlpha(150);
+            editTextTitle.getBackground().setAlpha(150);
             color = Color.WHITE;
         } else {
             noteID = 0;
@@ -105,15 +116,15 @@ public class SecondaryActivity extends AppCompatActivity {
 
     private void loadNote() {
         Realm realm = RealmHelper.getInstance().getRealm();
-
         NoteData note = realm.where(NoteData.class).equalTo("id", noteID).findFirst();
-        title.setText(note.getTitle());
-        text.setText(note.getNoteText());
+
+        editTextTitle.setText(note.getTitle());
+        editTextContent.setText(note.getNoteText());
         Log.d(TAG, "color is: " + color);
         getWindow().getDecorView().setBackgroundColor(note.getColor());
         color = note.getColor();
-        text.getBackground().setAlpha(150);
-        title.getBackground().setAlpha(150);
+        editTextContent.getBackground().setAlpha(150);
+        editTextTitle.getBackground().setAlpha(150);
 
     }
 
@@ -121,21 +132,18 @@ public class SecondaryActivity extends AppCompatActivity {
         Realm realm = RealmHelper.getInstance().getRealm();
         NoteData noteData = new NoteData();
 
-        Log.d(TAG, "set title: " + title.getText());
-        Log.d(TAG, "set text: " + text.getText());
+        Log.d(TAG, "set title: " + editTextTitle.getText());
+        Log.d(TAG, "set text: " + editTextContent.getText());
 
         noteData.setId(noteID);
         noteData.setColor(color);
-        noteData.setTitle(String.valueOf(title.getText()));
-        noteData.setNoteText(String.valueOf(text.getText()));
+        noteData.setTitle(String.valueOf(editTextTitle.getText()));
+        noteData.setNoteText(String.valueOf(editTextContent.getText()));
 
 
         realm.executeTransaction(realm1 -> {
             realm.insertOrUpdate(noteData);
         });
         Log.d(TAG, "Note saved with the id:" + noteData.getId());
-
-
     }
 }
-
